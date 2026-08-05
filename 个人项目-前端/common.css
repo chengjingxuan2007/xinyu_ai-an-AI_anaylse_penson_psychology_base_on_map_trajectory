@@ -1,0 +1,27 @@
+ 
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --text-color: #333;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* 关键：实现点击导航平滑滚动 */
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            /* 治愈系渐变背景：从淡紫到淡蓝再到淡粉 */
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 50%, #fad0c4 100%);
+            min-height: 100vh;
+        }

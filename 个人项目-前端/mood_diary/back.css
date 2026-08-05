@@ -1,0 +1,17 @@
+/* 返回主页按钮 */
+        .back-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #7986cb, #9575cd);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: opacity 0.3s;
+        }
+        .back-btn:hover { opacity: 0.9; }

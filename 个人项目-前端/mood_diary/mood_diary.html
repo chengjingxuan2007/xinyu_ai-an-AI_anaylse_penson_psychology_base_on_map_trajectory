@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心语AI - 每日心理状态</title>
+    
+    <link rel="stylesheet" href="back.css">
+    <link rel="stylesheet" href="commom.css">
+    <link rel="stylesheet" href="main.css">
+
+    <style>
+       @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            .input-group {
+                flex-direction: column;
+            }
+        }
+</style>
+
+
+
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>🌤️ 每日心理状态</h1>
+            <p>AI 正在用心倾听你的每一段情绪轨迹</p>
+        </div>
+
+        <!-- 动态渲染区域 -->
+        <div id="moodList">
+            <!-- 示例卡片 1 -->
+            <div class="mood-card">
+                <div class="card-header">
+                    <span class="date">2026-08-04 (周二)</span>
+                    <span class="mood-tag calm">平静</span>
+                </div>
+                <p class="ai-analysis">今天你的情绪比较平稳，虽然下午有些小波动，但很快自我调节过来了。继续保持这种觉察力，你做得很棒！</p>
+            </div>
+            <!-- 示例卡片 2 -->
+            <div class="mood-card">
+                <div class="card-header">
+                    <span class="date">2026-08-03 (周一)</span>
+                    <span class="mood-tag anxious">微焦虑</span>
+                </div>
+                <p class="ai-analysis">检测到你在上午有些焦虑，可能是工作压力导致的。建议今晚尝试5分钟的正念呼吸，给自己一个放松的缓冲期。</p>
+            </div>
+        </div>
+
+        <a href="../main.html" class="back-btn">返回主页</a>
+    </div>
+
+    <script>
+        // 后续在这里编写 fetch 请求，从后端获取真实数据并渲染到 #moodList 中
+        // 
+        // fetch('http://127.0.0.1:8000/api/mood/list/')
+        //     .then(res => res.json())
+        //     .then(data => { 渲染逻辑 })
+    </script>
+</body>
+</html>

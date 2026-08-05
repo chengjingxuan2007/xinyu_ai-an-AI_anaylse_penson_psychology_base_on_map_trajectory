@@ -1,0 +1,115 @@
+/* 登录 / 注册页公共样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 治愈系渐变背景，与主页面保持一致 */
+    background: linear-gradient(135deg, #e0f7fa 0%, #f3e5f5 50%, #fff3e0 100%);
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+.login-card,
+.register-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 380px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.login-card h2,
+.register-card h2 {
+    color: #5c6bc0;
+    margin-bottom: 8px;
+    font-size: 28px;
+}
+
+.login-card p.subtitle,
+.register-card p.subtitle {
+    color: #9e9e9e;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    color: #78909c;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.form-group input:focus {
+    border-color: #7986cb;
+}
+
+.btn-login,
+.btn-register {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7986cb, #9575cd);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    margin-top: 8px;
+}
+
+.btn-login:hover,
+.btn-register:hover {
+    opacity: 0.9;
+}
+
+.switch-link {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #9e9e9e;
+}
+
+.switch-link a {
+    color: #7986cb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.error-msg,
+.msg {
+    font-size: 13px;
+    margin-top: 12px;
+    min-height: 20px;
+}
+
+.error-msg,
+.msg.error {
+    color: #ef5350;
+}
+
+.msg.success {
+    color: #66bb6a;
+}

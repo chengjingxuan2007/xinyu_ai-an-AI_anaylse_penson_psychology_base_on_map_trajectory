@@ -1,0 +1,19 @@
+# 敏感文件（绝不提交）
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 数据库
+db.sqlite3
+
+# IDE
+.idea/
+
+# 系统
+.DS_Store
+Thumbs.db

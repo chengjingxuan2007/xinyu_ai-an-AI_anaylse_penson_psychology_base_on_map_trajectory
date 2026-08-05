@@ -1,0 +1,57 @@
+/* 页面标题区 */
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .page-header h1 {
+            color: #5c6bc0;
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+        .page-header p {
+            color: #9e9e9e;
+            font-size: 14px;
+        }
+
+        /* 状态卡片样式 */
+        .mood-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .mood-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .date {
+            font-size: 14px;
+            color: #7986cb;
+            font-weight: 600;
+        }
+        .mood-tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #fff;
+        }
+        /* 根据情绪状态显示不同颜色 */
+        .mood-tag.happy { background-color: #66bb6a; }
+        .mood-tag.calm { background-color: #42a5f5; }
+        .mood-tag.anxious { background-color: #ffa726; }
+        .mood-tag.sad { background-color: #ab47bc; }
+
+        .ai-analysis {
+            font-size: 15px;
+            color: #546e7a;
+            line-height: 1.6;
+        }

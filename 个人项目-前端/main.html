@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心语AI - 您的心灵伴侣</title>
+</head>
+    <script src="https://cdn.jsdelivr.net/npm/ol@v9.0.0/dist/ol.js"></script>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="footer.css">
+    <script src="mood-diary.js"></script>
+    <script src="refreshquate.js"></script>
+    <script src="map.js"></script>
+<style>
+       @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            .input-group {
+                flex-direction: column;
+            }
+        }
+</style>
+
+
+
+<body>
+    <!-- 总标题与Header -->
+    <header id="home">
+        <h1>心语 AI</h1>
+        <p>倾听你的心声，追踪你的足迹，用科技温暖每一刻。</p>
+    </header>
+
+    <!-- 导航栏：包含五个部分的跳转链接 -->
+    <nav>
+        <ul>
+            <li><a href="#limitations">传统局限</a></li>
+            <li><a href="#app-role">APP作用</a></li>
+            <li><a href="#comfort">心灵慰藉</a></li>
+            <li><a href="#ai-analysis">AI 分析</a></li>
+            <li><a href="#map-section">地图轨迹</a></li>
+            <li><a href="#mood-diary">今日心理</a></li>
+        </ul>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main>
+        <!-- 第一部分：传统心理治疗的局限 -->
+        <section id="limitations">
+            <h2>传统心理治疗的局限</h2>
+            <div class="limitations-list">
+                <p>在传统模式下，寻求心理帮助往往面临以下挑战：</p>
+                <br>
+                <ul>
+                    <li><strong>时间与空间限制：</strong> 需要预约特定时间前往诊所，难以应对突发性情绪崩溃。</li>
+                    <li><strong>高昂的费用：</strong> 长期咨询费用昂贵，并非所有人都能负担。</li>
+                    <li><strong>病耻感：</strong> 许多人因担心他人眼光而不敢走进心理咨询室。</li>
+                    <li><strong>缺乏即时数据支持：</strong> 医生难以获取患者日常生活中的实时行为轨迹数据。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 第二部分：该APP的作用 -->
+        <section id="app-role">
+            <h2>心语 AI 的核心价值</h2>
+            <p style="margin-bottom: 1rem;">我们致力于通过技术手段打破壁垒，提供全天候的心理支持：</p>
+            <div class="app-benefits">
+                <div class="benefit-card">
+                    <h3>🕒 24/7 陪伴</h3>
+                    <p>随时随地，只需打开APP，AI助手即刻响应。</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>🔒 隐私保护</h3>
+                    <p>匿名交流，无需担心社会评价，安全倾诉。</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>📊 数据洞察</h3>
+                    <p>结合地理位置与行为轨迹，提供更精准的情绪分析。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三部分：心理安慰的句子 -->
+        <section id="comfort">
+            <h2>今日心灵慰藉</h2>
+            <div class="quote-box">
+                <p id="daily-quote">“你不需要时刻都坚强，允许自己脆弱，也是一种勇敢。”</p>
+            </div>
+            <div style="text-align: center; margin-top: 1rem;">
+                <button onclick="refreshQuote()"
+                    style="background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);">换一句</button>
+            </div>
+        </section>
+
+        <!-- 第四部分：AI部分（查询输入框 + 轨迹分析按钮） -->
+        <section id="ai-analysis">
+            <h2>AI 智能助手</h2>
+            <div class="ai-container">
+                <!-- 心理问题查询 -->
+                <div>
+                    <label for="psych-query"
+                        style="display:block; margin-bottom:0.5rem; font-weight:bold;">心里有什么困惑？告诉我不必独自承担：</label>
+                    <div class="input-group">
+                        <input type="text" id="psych-query" placeholder="例如：最近工作压力大，失眠严重...">
+                        <button onclick="analyzeQuery()">发送咨询</button>
+                    </div>
+                </div>
+
+                <!-- 轨迹分析按钮 -->
+                <div style="margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem;">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:bold;">基于位置的行为分析：</label>
+                    <button onclick="analyzeTrack()"
+                        style="width: 100%; background: linear-gradient(to right, #11998e, #38ef7d);">根据今日轨迹分析情绪状态</button>
+                </div>
+
+                <!-- 显示结果区域 -->
+                <div id="analysis-output" class="analysis-result">
+                    等待输入或点击分析...
+                </div>
+            </div>
+        </section>
+
+        <!-- 第五部分：地图部分 -->
+        <section id="map-section">
+            <h2>心情轨迹地图</h2>
+            <p style="margin-bottom: 1rem; color: #666;">可视化展示您今日的活动范围与情绪波动热点。</p>
+            <!-- 地图容器 ID 为 map -->
+            <div id="map"></div>
+        </section>
+
+        <!-- 第六部分：心情日记-->
+        <section id="mood-diary">
+            <h2>心情日记</h2>
+            <p style="margin-bottom: 1rem; color: #666;">记录您的情绪轨迹，分享自己的心情日记。</p>
+            <button id='openDiary' onclick="openDiary()">打开心情日记</button>
+    
+        </section>
+    </main>
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2026 心语 AI Project. All Rights Reserved.</p>
+        <p>关爱心理健康，从每一次对话开始。</p>
+    </footer>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:8000/api';
+
+        // AI 咨询：把咨询语句发给后端，并显示 AI 回复
+        async function analyzeQuery() {
+            const input = document.getElementById('psych-query');
+            const output = document.getElementById('analysis-output');
+            const message = input.value.trim();
+
+            // 1. 校验：咨询内容不能为空
+            if (!message) {
+                output.innerText = '请先输入你想说的话～';
+                return;
+            }
+
+            // 2. 取出登录时存下的 Token，未登录则提示
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                output.innerText = '请先登录后再使用 AI 咨询';
+                return;
+            }
+
+            // 3. 调用后端接口（带上会话 ID，实现多轮记忆）
+            output.innerText = '心语正在聆听，请稍候...';
+            try {
+                const sessionId = localStorage.getItem('ai_session_id');
+                const res = await fetch(`${API_BASE}/ai_app/chat/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ message, session_id: sessionId || null })
+                });
+                const data = await res.json();
+
+                // 4. 按后端返回结果显示
+                if (res.ok && data.code === 200) {
+                    output.innerText = data.data.reply;
+                    // 保存会话 ID，供下一轮继续对话
+                    localStorage.setItem('ai_session_id', data.data.session_id);
+                } else if (res.status === 401) {
+                    output.innerText = '登录已过期，请重新登录';
+                } else {
+                    output.innerText = data.msg || '出错了，请稍后再试';
+                }
+            } catch (err) {
+                output.innerText = '网络异常，请检查后端服务是否启动';
+            }
+        }
+
+        // 轨迹分析：后端接口尚未完成，暂为占位
+        function analyzeTrack() {
+            const output = document.getElementById('analysis-output');
+            if (output) output.innerText = '轨迹分析功能开发中，敬请期待～';
+        }
+    </script>
+
+</body>
+
+</html>
