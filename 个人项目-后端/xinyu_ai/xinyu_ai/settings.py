@@ -137,12 +137,17 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500"
 ]
 
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),    # 访问令牌有效 2 小时
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),   # 刷新令牌有效 30 天
+}
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -153,7 +158,7 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.UserRateThrottle',
     ),
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '5/min',    # 未登录用户每分钟 10 次
+        'anon': '5/min',    # 未登录用户每分钟 5 次
         'user': '60/min',    # 登录用户每分钟 60 次
     },
 }

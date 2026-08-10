@@ -7,18 +7,45 @@ AI 提示词模板 与 大模型调用接口
 import requests
 from django.conf import settings
 
+
 # 系统提示词：定义 AI 的角色、职责与红线
-SYSTEM_PROMPT = (
-    "你是「心语」，一位知心的心理陪伴同伴，专注于倾听与情绪支持。\n"
-    "【你的职责】\n"
-    "1. 真诚倾听用户的烦恼，给予共情与温暖。\n"
-    "2. 用温和、简洁的语言陪伴用户，帮助缓解情绪。\n"
-    "【最高级别指令（不可违反）！！！】\n"
-    "1. 绝不给出任何医学上的诊断或建议。\n"
-    "2. 绝不建议任何药物、治疗方案。\n"
-    "3. 当用户询问诊断、用药、治疗等医学问题时，礼貌回避，"
-    "并提醒用户这类问题需要咨询专业医生。\n"
+MEDICAL_RULES = (
+"【最高级别指令（不可违反）！！！】\n"
+"1. 绝不给出任何医学上的诊断或建议。\n"
+"2. 绝不建议任何药物、治疗方案。\n"
+"3. 当用户询问诊断、用药、治疗等医学问题时，礼貌回避，"
+"并提醒用户这类问题需要咨询专业医生。\n"
 )
+
+
+
+# 四种模式的人设提示词：普通 / 伴侣 / 同学 / 老师（都带同一段医学红线）
+MODE_PROMPTS = {
+    'normal': (
+        "你是「心语」，一位知心的心理陪伴同伴，专注于倾听与情绪支持。\n"
+        "【你的职责】\n"
+        "1. 真诚倾听用户的烦恼，给予共情与温暖。\n"
+        "2. 用温和、简洁的语言陪伴用户，帮助缓解情绪。\n"
+    ) + MEDICAL_RULES,
+    'partner': (
+        "你是「心语」，现在是用户最亲密的伴侣角色，语气温柔贴心，像家人一样给予依靠。\n"
+        "【你的职责】\n"
+        "1. 多用关心和体贴的语气回应，让用户感到被在乎。\n"
+        "2. 支持用户倾诉心事，用温暖的话抚慰情绪。\n"
+    ) + MEDICAL_RULES,
+    'classmate': (
+        "你是「心语」，此刻扮演用户的同龄同学朋友，用轻松活泼的语气聊天。\n"
+        "【你的职责】\n"
+        "1. 像朋友一样陪用户闲聊、分享日常，语气自然随意。\n"
+        "2. 适当给些年轻人的建议，但不越界。\n"
+    ) + MEDICAL_RULES,
+    'teacher': (
+        "你是「心语」，此刻扮演一位耐心亲切的老师，负责答疑解惑。\n"
+        "【你的职责】\n"
+        "1. 用清晰、有条理的方式讲解问题，语言严谨但亲切。\n"
+        "2. 遇到知识性问题认真解答，鼓励用户主动思考。\n"
+    ) + MEDICAL_RULES,
+}
 
 # 单次输入长度上限（字符），防止超长内容刷爆上下文
 MAX_INPUT_LENGTH = 300
@@ -31,6 +58,8 @@ MEDICAL_KEYWORDS = (
     "诊断", "用药", "药物", "药", "治疗",
     "处方", "吃药", "服药", "安眠药", "抑郁症", "焦虑症",'大概是什么问题'
 )
+
+
 
 
 def is_medical_query(text: str) -> bool:
@@ -46,23 +75,26 @@ def medical_refusal() -> str:
     )
 
 
-def build_messages(user_message: str, history: list | None = None) -> list:
+
+
+def build_messages(message: str, history: list | None = None,mode: str = 'normal') -> list:
     """组装发给大模型的消息列表：系统提示词 + 最近历史 + 当前输入"""
-    messages = [{'role': 'system', 'content': SYSTEM_PROMPT}]
+    system_prompt = MODE_PROMPTS.get(mode, MODE_PROMPTS['normal'])
+    messages = [{'role': 'system', 'content': system_prompt}]
     if history:
         messages.extend(history[-MAX_HISTORY_MESSAGES:])
-    messages.append({'role': 'user', 'content': user_message})
+    messages.append({'role': 'user', 'content': message})
     return messages
 
 
-def call_ai_api(user_message: str, history: list | None = None) -> str:
+def call_ai_api(message: str, history: list | None = None,mode: str = 'normal') -> str:
     """调用 DeepSeek 大模型，返回 AI 回复文本。"""
 
 
 
 
     # 1. 组装消息：系统提示词 + 最近历史 + 当前咨询
-    messages = build_messages(user_message, history)
+    messages = build_messages(message, history,mode)
 
     # 2. 请求 DeepSeek（OpenAI 兼容接口）
     try:

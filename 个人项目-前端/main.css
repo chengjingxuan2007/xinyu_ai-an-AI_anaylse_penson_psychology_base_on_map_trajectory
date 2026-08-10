@@ -92,20 +92,21 @@
      border-color: var(--secondary-color);
  }
 
- button {
-     padding: 12px 24px;
-     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-     color: white;
-     border: none;
-     border-radius: 8px;
-     cursor: pointer;
-     font-weight: bold;
-     transition: opacity 0.3s;
- }
+ /* 全局 button 样式 */
+button {
+    padding: 12px 24px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
 
- button:hover {
-     opacity: 0.9;
- }
+button:hover {
+    opacity: 0.9;
+}
 
  .analysis-result {
      background: #f0f4f8;
@@ -118,6 +119,75 @@
      color: #666;
      font-size: 0.9rem;
  }
+
+ /* 7. AI 模式切换轮播图 */
+.mode-carousel {
+    max-width: 280px;
+    margin: 0 auto 1rem auto;
+}
+
+.mode-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mode-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.mode-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.mode-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.mode-card p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.mode-status {
+    display: none;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.mode-status-active {
+    display: inline-block;
+}
+
+.carousel-indicators button {
+    background-color: var(--primary-color);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    padding: 15px;
+}
+
 
  /* 5. 地图部分 */
  #map {
@@ -134,6 +204,152 @@
      position: relative;
      overflow: hidden;
  }
+
+/* 地图控件美化：缩放按钮（左上）—— 竖排胶囊 */
+.ol-zoom {
+    top: 1rem !important;
+    left: 1rem !important;
+    width: 42px !important;
+    border-radius: 21px !important;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    background: #fff !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.ol-zoom button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 42px !important;
+    height: 42px !important;
+    background: transparent !important;
+    background-image: none !important;
+    color: #555 !important;
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: none !important;
+    font-family: inherit !important;
+}
+
+.ol-zoom button:hover {
+    background: rgba(102, 126, 234, 0.12) !important;
+    color: var(--primary-color) !important;
+}
+
+.ol-zoom .ol-zoom-in {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 旋转/指北针控件（右上）—— 圆形，与缩放按钮左右对称 */
+.ol-rotate {
+    top: 1rem !important;
+    right: 1rem !important;
+    left: auto !important;
+    display: block !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    background: #fff !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.ol-rotate.ol-hidden {
+    display: block !important;
+}
+
+.ol-rotate button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 42px !important;
+    height: 42px !important;
+    background: transparent !important;
+    background-image: none !important;
+    color: #555 !important;
+    text-decoration: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: none !important;
+    font-family: inherit !important;
+}
+
+.ol-rotate button:hover {
+    background: rgba(102, 126, 234, 0.12) !important;
+    color: var(--primary-color) !important;
+    transform: rotate(360deg);
+}
+
+/* 比例尺控件（左下）美化 */
+.ol-scale-line {
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 4px 10px;
+}
+
+.ol-scale-line-inner {
+    color: #555;
+    border-color: #555;
+}
+
+/* 版权信息（右下）淡化 */
+.ol-attribution {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 8px 0 0 0;
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+/* Bootstrap card 悬停阴影效果 */
+.custom-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(31, 38, 135, 0.25) !important;
+}
+
+/* 轮播图淡入淡出过渡 */
+.mode-carousel.carousel-fade .carousel-item {
+    transition: opacity 0.5s ease;
+}
+
+.mode-carousel.carousel-fade .carousel-item.active {
+    opacity: 1;
+}
+
+.mode-carousel.carousel-fade .carousel-item:not(.active) {
+    opacity: 0;
+}
 
 
 

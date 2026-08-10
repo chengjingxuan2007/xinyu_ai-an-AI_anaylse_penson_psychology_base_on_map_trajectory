@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import ChatMessage, ChatSession
-from .prompt import MAX_INPUT_LENGTH, call_ai_api, is_medical_query, medical_refusal
+from .prompt import MAX_INPUT_LENGTH, call_ai_api, is_medical_query, medical_refusal,MODE_PROMPTS
 
 
 class ChatView(APIView):
@@ -25,6 +25,9 @@ class ChatView(APIView):
         # 1. 拿到用户说的话和会话 ID
         message = request.data.get('message', '').strip()
         session_id = request.data.get('session_id')
+        mode = request.data.get('mode', 'normal')
+        if mode not in MODE_PROMPTS:
+            mode = 'normal'  # 不认识的模式一律回退到普通
 
         # 2. 校验：不能为空、不能太长
         if not message:
@@ -49,7 +52,7 @@ class ChatView(APIView):
                 {'role': msg.role, 'content': msg.content}
                 for msg in session.messages.all()
             ]
-            reply = call_ai_api(message, history)
+            reply = call_ai_api(message, history,mode)
 
         # 6. 把「用户消息 + AI 回复」存进数据库，下一轮对话要用
         if not session.messages.exists():

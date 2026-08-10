@@ -6,152 +6,274 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>心语AI - 您的心灵伴侣</title>
 </head>
-    <script src="https://cdn.jsdelivr.net/npm/ol@v9.0.0/dist/ol.js"></script>
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="nav.css">
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="footer.css">
-    <script src="mood-diary.js"></script>
-    <script src="refreshquate.js"></script>
-    <script src="map.js"></script>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/openlayers/9.0.0/dist/ol.min.css">
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.bootcdn.net/ajax/libs/openlayers/9.0.0/dist/ol.min.js"></script>
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="header.css">
+<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="footer.css">
+<script src="mood-diary.js"></script>
+<script src="refreshquate.js"></script>
+<script src="map.js"></script>
 <style>
-       @media (max-width: 768px) {
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-            header h1 {
-                font-size: 2rem;
-            }
-            .input-group {
-                flex-direction: column;
-            }
+    @media (max-width: 768px) {
+        nav ul {
+            gap: 1rem;
+            font-size: 0.9rem;
         }
+
+        header h1 {
+            font-size: 2rem;
+        }
+
+        .input-group {
+            flex-direction: column;
+        }
+    }
 </style>
 
 
 
 <body>
     <!-- 总标题与Header -->
-    <header id="home">
-        <h1>心语 AI</h1>
-        <p>倾听你的心声，追踪你的足迹，用科技温暖每一刻。</p>
+    <header id="home" class="text-center py-5">
+        <div class="container">
+            <h1 class="display-5 fw-bold">心语 AI</h1>
+            <p class="lead text-muted mt-2">倾听你的心声，追踪你的足迹，用科技温暖每一刻。</p>
+        </div>
     </header>
 
-    <!-- 导航栏：包含五个部分的跳转链接 -->
-    <nav>
-        <ul>
-            <li><a href="#limitations">传统局限</a></li>
-            <li><a href="#app-role">APP作用</a></li>
-            <li><a href="#comfort">心灵慰藉</a></li>
-            <li><a href="#ai-analysis">AI 分析</a></li>
-            <li><a href="#map-section">地图轨迹</a></li>
-            <li><a href="#mood-diary">今日心理</a></li>
-        </ul>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-md sticky-top">
+        <div class="container justify-content-center">
+            <ul class="navbar-nav flex-row flex-wrap gap-2 justify-content-center">
+                <li class="nav-item"><a class="nav-link px-3" href="#limitations">传统局限</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#app-role">APP作用</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#comfort">心灵慰藉</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#ai-analysis">AI 分析</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#map-section">地图轨迹</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#mood-diary">今日心理</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- 主要内容区域 -->
-    <main>
+    <main class="container py-4">
         <!-- 第一部分：传统心理治疗的局限 -->
-        <section id="limitations">
-            <h2>传统心理治疗的局限</h2>
+        <section id="limitations" class="mb-4 p-4 rounded-4 shadow-sm">
+            <h2 class="mb-3">传统心理治疗的局限</h2>
             <div class="limitations-list">
-                <p>在传统模式下，寻求心理帮助往往面临以下挑战：</p>
-                <br>
-                <ul>
-                    <li><strong>时间与空间限制：</strong> 需要预约特定时间前往诊所，难以应对突发性情绪崩溃。</li>
-                    <li><strong>高昂的费用：</strong> 长期咨询费用昂贵，并非所有人都能负担。</li>
-                    <li><strong>病耻感：</strong> 许多人因担心他人眼光而不敢走进心理咨询室。</li>
-                    <li><strong>缺乏即时数据支持：</strong> 医生难以获取患者日常生活中的实时行为轨迹数据。</li>
-                </ul>
+                <p class="text-muted">在传统模式下，寻求心理帮助往往面临以下挑战：</p>
+                <div class="row g-3 mt-1">
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm custom-card">
+                            <div class="card-body">
+                                <h5 class="card-title">⏰ 时间与空间限制</h5>
+                                <p class="card-text text-muted mb-0">需要预约特定时间前往诊所，难以应对突发性情绪崩溃。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm custom-card">
+                            <div class="card-body">
+                                <h5 class="card-title">💰 高昂的费用</h5>
+                                <p class="card-text text-muted mb-0">长期咨询费用昂贵，并非所有人都能负担。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm custom-card">
+                            <div class="card-body">
+                                <h5 class="card-title">🙈 病耻感</h5>
+                                <p class="card-text text-muted mb-0">许多人因担心他人眼光而不敢走进心理咨询室。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm custom-card">
+                            <div class="card-body">
+                                <h5 class="card-title">📉 缺乏即时数据支持</h5>
+                                <p class="card-text text-muted mb-0">医生难以获取患者日常生活中的实时行为轨迹数据。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- 第二部分：该APP的作用 -->
-        <section id="app-role">
-            <h2>心语 AI 的核心价值</h2>
-            <p style="margin-bottom: 1rem;">我们致力于通过技术手段打破壁垒，提供全天候的心理支持：</p>
-            <div class="app-benefits">
-                <div class="benefit-card">
-                    <h3>🕒 24/7 陪伴</h3>
-                    <p>随时随地，只需打开APP，AI助手即刻响应。</p>
+        <section id="app-role" class="mb-4 p-4 rounded-4 shadow-sm">
+            <h2 class="mb-3">心语 AI 的核心价值</h2>
+            <p class="text-muted mb-3">我们致力于通过技术手段打破壁垒，提供全天候的心理支持：</p>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="benefit-card card h-100 p-3 text-center border-0 shadow-sm rounded-3 custom-card">
+                        <h3 class="card-title">🕒 24/7 陪伴</h3>
+                        <p class="card-text text-muted mb-0">随时随地，只需打开APP，AI助手即刻响应。</p>
+                    </div>
                 </div>
-                <div class="benefit-card">
-                    <h3>🔒 隐私保护</h3>
-                    <p>匿名交流，无需担心社会评价，安全倾诉。</p>
+                <div class="col-md-4">
+                    <div class="benefit-card card h-100 p-3 text-center border-0 shadow-sm rounded-3 custom-card">
+                        <h3 class="card-title">🔒 隐私保护</h3>
+                        <p class="card-text text-muted mb-0">匿名交流，无需担心社会评价，安全倾诉。</p>
+                    </div>
                 </div>
-                <div class="benefit-card">
-                    <h3>📊 数据洞察</h3>
-                    <p>结合地理位置与行为轨迹，提供更精准的情绪分析。</p>
+                <div class="col-md-4">
+                    <div class="benefit-card card h-100 p-3 text-center border-0 shadow-sm rounded-3 custom-card">
+                        <h3 class="card-title">📊 数据洞察</h3>
+                        <p class="card-text text-muted mb-0">结合地理位置与行为轨迹，提供更精准的情绪分析。</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 第三部分：心理安慰的句子 -->
-        <section id="comfort">
-            <h2>今日心灵慰藉</h2>
-            <div class="quote-box">
-                <p id="daily-quote">“你不需要时刻都坚强，允许自己脆弱，也是一种勇敢。”</p>
+        <section id="comfort" class="mb-4 p-4 rounded-4 shadow-sm text-center">
+            <h2 class="mb-3">今日心灵慰藉</h2>
+            <div class="quote-box p-4 rounded-3 mx-auto" style="max-width:600px;">
+                <p id="daily-quote" class="fs-5 fst-italic text-muted mb-0">"你不需要时刻都坚强，允许自己脆弱，也是一种勇敢。"</p>
             </div>
-            <div style="text-align: center; margin-top: 1rem;">
-                <button onclick="refreshQuote()"
-                    style="background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);">换一句</button>
-            </div>
+            <button onclick="refreshQuote()" class="btn btn-outline-primary mt-3 rounded-pill px-4">换一句</button>
         </section>
 
-        <!-- 第四部分：AI部分（查询输入框 + 轨迹分析按钮） -->
-        <section id="ai-analysis">
-            <h2>AI 智能助手</h2>
+        <!-- 第四部分：AI部分 -->
+        <section id="ai-analysis" class="mb-4 p-4 rounded-4 shadow-sm">
+            <h2 class="mb-3">AI 智能助手</h2>
             <div class="ai-container">
-                <!-- 心理问题查询 -->
                 <div>
-                    <label for="psych-query"
-                        style="display:block; margin-bottom:0.5rem; font-weight:bold;">心里有什么困惑？告诉我不必独自承担：</label>
-                    <div class="input-group">
-                        <input type="text" id="psych-query" placeholder="例如：最近工作压力大，失眠严重...">
-                        <button onclick="analyzeQuery()">发送咨询</button>
+                    <label class="form-label fw-bold">心里有什么困惑？告诉我不必独自承担：</label>
+
+                    <!-- 模式选择轮播图 -->
+                    <div id="modeCarousel" class="carousel slide carousel-fade mode-carousel" data-bs-ride="false">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#modeCarousel" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#modeCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#modeCarousel" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#modeCarousel" data-bs-slide-to="3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-mode="normal">
+                                <div class="mode-card">
+                                    <div class="mode-icon">💬</div>
+                                    <h4>普通模式</h4>
+                                    <p>知心心理陪伴，倾听你的烦恼</p>
+                                    <span class="mode-status mode-status-active">✓ 已选择</span>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-mode="partner">
+                                <div class="mode-card">
+                                    <div class="mode-icon">💑</div>
+                                    <h4>伴侣模式</h4>
+                                    <p>温柔贴心，像家人一样给予依靠</p>
+                                    <span class="mode-status">✓ 已选择</span>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-mode="classmate">
+                                <div class="mode-card">
+                                    <div class="mode-icon">🎓</div>
+                                    <h4>同学模式</h4>
+                                    <p>轻松活泼，像朋友一样闲聊</p>
+                                    <span class="mode-status">✓ 已选择</span>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-mode="teacher">
+                                <div class="mode-card">
+                                    <div class="mode-icon">👨‍🏫</div>
+                                    <h4>老师模式</h4>
+                                    <p>耐心亲切，答疑解惑</p>
+                                    <span class="mode-status">✓ 已选择</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#modeCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#modeCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <input type="text" id="psych-query" class="form-control rounded-start-pill" placeholder="例如：最近工作压力大，失眠严重...">
+                        <button onclick="analyzeQuery()" class="btn btn-primary rounded-end-pill px-4">发送咨询</button>
                     </div>
                 </div>
 
                 <!-- 轨迹分析按钮 -->
-                <div style="margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem;">
-                    <label style="display:block; margin-bottom:0.5rem; font-weight:bold;">基于位置的行为分析：</label>
-                    <button onclick="analyzeTrack()"
-                        style="width: 100%; background: linear-gradient(to right, #11998e, #38ef7d);">根据今日轨迹分析情绪状态</button>
+                <div class="mt-3 pt-3 border-top">
+                    <label class="form-label fw-bold">基于位置的行为分析：</label>
+                    <button onclick="analyzeTrack()" class="btn btn-success w-100 rounded-pill py-2">根据今日轨迹分析情绪状态</button>
                 </div>
 
                 <!-- 显示结果区域 -->
-                <div id="analysis-output" class="analysis-result">
+                <div id="analysis-output" class="analysis-result rounded-3 p-3 mt-3">
                     等待输入或点击分析...
                 </div>
             </div>
         </section>
 
         <!-- 第五部分：地图部分 -->
-        <section id="map-section">
-            <h2>心情轨迹地图</h2>
-            <p style="margin-bottom: 1rem; color: #666;">可视化展示您今日的活动范围与情绪波动热点。</p>
-            <!-- 地图容器 ID 为 map -->
-            <div id="map"></div>
+        <section id="map-section" class="mb-4 p-4 rounded-4 shadow-sm">
+            <h2 class="mb-3">心情轨迹地图</h2>
+            <p class="text-muted mb-3">可视化展示您今日的活动范围与情绪波动热点。</p>
+            <div id="map" class="rounded-3"></div>
         </section>
 
-        <!-- 第六部分：心情日记-->
-        <section id="mood-diary">
-            <h2>心情日记</h2>
-            <p style="margin-bottom: 1rem; color: #666;">记录您的情绪轨迹，分享自己的心情日记。</p>
-            <button id='openDiary' onclick="openDiary()">打开心情日记</button>
-    
+        <!-- 第六部分：心情日记 -->
+        <section id="mood-diary" class="mb-4 p-4 rounded-4 shadow-sm text-center">
+            <h2 class="mb-3">心情日记</h2>
+            <p class="text-muted mb-3">记录您的情绪轨迹，分享自己的心情日记。</p>
+            <button id='openDiary' onclick="openDiary()" class="btn btn-primary rounded-pill px-4 py-2">打开心情日记</button>
         </section>
     </main>
+
     <!-- 页脚 -->
-    <footer>
-        <p>&copy; 2026 心语 AI Project. All Rights Reserved.</p>
-        <p>关爱心理健康，从每一次对话开始。</p>
+    <footer class="text-center py-4 mt-4">
+        <div class="container">
+            <p class="mb-1 text-muted">&copy; 2026 心语 AI Project. All Rights Reserved.</p>
+            <p class="mb-0 text-muted small">关爱心理健康，从每一次对话开始。</p>
+        </div>
     </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <script>
         const API_BASE = 'http://127.0.0.1:8000/api';
+        // 当前对话模式，默认"普通"
+        let currentMode = 'normal';
+
+        // 轮播图切换时更新模式
+        const modeCarousel = document.getElementById('modeCarousel');
+        modeCarousel.addEventListener('slid.bs.carousel', function (event) {
+            const activeItem = event.relatedTarget;
+            currentMode = activeItem.dataset.mode;
+            updateModeStatus();
+        });
+
+        // 点击轮播图卡片也能选中该模式
+        document.querySelectorAll('.carousel-item').forEach(item => {
+            item.addEventListener('click', function () {
+                currentMode = this.dataset.mode;
+                updateModeStatus();
+            });
+        });
+
+        // 更新"已选择"状态显示
+        function updateModeStatus() {
+            document.querySelectorAll('.carousel-item').forEach(item => {
+                const status = item.querySelector('.mode-status');
+                if (item.dataset.mode === currentMode) {
+                    status.classList.add('mode-status-active');
+                } else {
+                    status.classList.remove('mode-status-active');
+                }
+            });
+        }
+
 
         // AI 咨询：把咨询语句发给后端，并显示 AI 回复
         async function analyzeQuery() {
@@ -172,7 +294,7 @@
                 return;
             }
 
-            // 3. 调用后端接口（带上会话 ID，实现多轮记忆）
+            // 3. 调用后端接口,向后端发起请求（带上会话 ID，实现多轮记忆）
             output.innerText = '心语正在聆听，请稍候...';
             try {
                 const sessionId = localStorage.getItem('ai_session_id');
@@ -182,7 +304,7 @@
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({ message, session_id: sessionId || null })
+                    body: JSON.stringify({ message, session_id: sessionId || null,mode:currentMode })
                 });
                 const data = await res.json();
 

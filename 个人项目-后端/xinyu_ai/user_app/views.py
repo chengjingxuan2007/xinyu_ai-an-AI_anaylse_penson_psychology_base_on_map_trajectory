@@ -28,7 +28,7 @@ def _validate_registration(username, password, confirm_password):
     if UserProfile.objects.filter(username=username).exists():
         return False, "用户名已存在"
     try:
-        validate_password(password)  # 触发 settings 里的强度规则（长度≥8等）
+        validate_password(password)  # 触发 settings 里的强度规则（长度≥8等）,不能是纯数字
     except ValidationError as e:
         return False, e.messages[0]
     return True, ""
