@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
         [106.982, 33.218],
         [106.988, 33.225]  // 终点
     ];
+    // 暴露轨迹坐标，供轨迹分析页统计使用
+    window.trackCoords = trackCoords;
 
     // ② 把经纬度转成 OpenLayers 内部坐标，然后画成一条线
     const trackLine = new ol.Feature({

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心语 AI - 轨迹分析</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/openlayers/9.0.0/dist/ol.min.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/openlayers/9.0.0/dist/ol.min.js"></script>
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="track.css">
+</head>
+
+<body>
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="mb-0">轨迹分析</h2>
+            <a href="../main.html" class="btn btn-outline-primary btn-sm rounded-pill">← 返回主页</a>
+        </div>
+
+        <!-- 上半部分：路径地图 + 统计数据 -->
+        <section class="p-4 rounded-4 shadow-sm mb-4">
+            <div id="map" class="rounded-3"></div>
+            <div class="row g-3 mt-1 text-center">
+                <div class="col-4">
+                    <div class="card border-0 shadow-sm custom-card">
+                        <div class="card-body p-3">
+                            <h6 class="card-title text-muted mb-1">🕒 出行时间</h6>
+                            <p class="card-text fw-bold fs-5 mb-0" id="stat-time">--</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card border-0 shadow-sm custom-card">
+                        <div class="card-body p-3">
+                            <h6 class="card-title text-muted mb-1">📏 总距离</h6>
+                            <p class="card-text fw-bold fs-5 mb-0" id="stat-dist">--</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card border-0 shadow-sm custom-card">
+                        <div class="card-body p-3">
+                            <h6 class="card-title text-muted mb-1">⚡ 平均速度</h6>
+                            <p class="card-text fw-bold fs-5 mb-0" id="stat-speed">--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 下半部分：AI 轨迹分析 -->
+        <section class="p-4 rounded-4 shadow-sm">
+            <h5 class="fw-bold mb-3">AI 轨迹情绪分析</h5>
+            <button onclick="analyzeTrack()" class="btn btn-success rounded-pill px-4 mb-3">开始分析</button>
+            <div id="track-output" class="analysis-result rounded-3 p-3">
+                点击上方按钮，AI 将根据你的轨迹给出情绪分析...
+            </div>
+        </section>
+    </div>
+
+    <script src="../map.js"></script>
+    <script src="track.js"></script>
+</body>
+
+</html>

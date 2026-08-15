@@ -1,13 +1,19 @@
  main {
-     max-width: 1000px;
+     max-width: 1200px;
      margin: 2rem auto;
-     padding: 0 1rem;
+     padding: 0 1.5rem;
+ }
+
+ /* 左右侧栏：粘性跟随中间滚动 */
+ .side-sticky {
+     position: sticky;
+     top: 5rem;
  }
 
  section {
      background: var(--bg-glass);
      margin-bottom: 2rem;
-     padding: 2.5rem;
+     padding: 2rem;
      border-radius: 16px;
      box-shadow: var(--shadow);
      border: 1px solid rgba(255, 255, 255, 0.5);
@@ -48,10 +54,8 @@
  /* 3. 心理安慰句子板块 */
  .quote-box {
      font-style: italic;
-     font-size: 1.2rem;
      text-align: center;
      color: #555;
-     padding: 2rem;
      background: #fff;
      border-radius: 10px;
      position: relative;
@@ -120,61 +124,41 @@ button:hover {
      font-size: 0.9rem;
  }
 
- /* 7. AI 模式切换轮播图 */
+ /* 7. AI 模式展示轮播图（放大版，仅展示） */
 .mode-carousel {
-    max-width: 280px;
+    max-width: 420px;
     margin: 0 auto 1rem auto;
 }
 
 .mode-card {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1.5rem;
     border-radius: 16px;
     text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    min-height: 200px;
+    min-height: 260px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.mode-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-}
-
 .mode-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 3.5rem;
+    margin-bottom: 0.8rem;
 }
 
 .mode-card h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
     font-weight: 600;
 }
 
 .mode-card p {
-    font-size: 0.85rem;
+    font-size: 1rem;
     opacity: 0.9;
-    margin-bottom: 0.5rem;
-}
-
-.mode-status {
-    display: none;
-    background: rgba(255, 255, 255, 0.3);
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    margin-top: 0.5rem;
-}
-
-.mode-status-active {
-    display: inline-block;
+    margin-bottom: 0;
 }
 
 .carousel-indicators button {
@@ -353,18 +337,4 @@ button:hover {
 
 
 
- /* 6. 心情日记 */
- #mood-diary {
-     background: var(--bg-glass);
-     margin-bottom: 2rem;
-     padding: 2.5rem;
-     border-radius: 16px;
-     box-shadow: var(--shadow);
-     border: 1px solid rgba(255, 255, 255, 0.5);
-     transition: transform 0.3s ease;
- }
-
- #openDiary {
-     display: block;
-     margin: 0 auto
- }
+ /* 6. 心情日记（已移入右侧栏，无需大盒子样式） */

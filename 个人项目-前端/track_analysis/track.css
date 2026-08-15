@@ -1,0 +1,11 @@
+/* 轨迹分析页：地图高度与输出区微调（其余样式复用 ../main.css） */
+#map {
+    height: 380px;
+}
+
+#track-output {
+    min-height: 120px;
+    white-space: pre-wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
