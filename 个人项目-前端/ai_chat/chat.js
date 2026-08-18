@@ -30,7 +30,7 @@ async function sendMsg() {
 
     addMsg(message, 'user');
     input.value = '';
-    addMsg('心语正在聆听，请稍候...', 'ai');
+    addMsg('踪语正在聆听，请稍候...', 'ai');
     const loading = document.getElementById('chat-body').lastChild;
 
     try {

@@ -1,4 +1,4 @@
-# 心语AI - 基于地图轨迹的心理分析平台
+# 踪语AI - 基于地图轨迹的心理分析平台
 
 > 个人国创项目（大创训练计划）· 概念验证原型
 
@@ -23,8 +23,8 @@
 │   │   └── track.js
 │   └── mood_diary/           # 心情日记页
 └── 个人项目-后端/            # Django REST Framework 后端
-    └── xinyu_ai/
-        ├── xinyu_ai/         # 项目配置（settings / urls）
+    └── zongyu_ai/
+        ├── zongyu_ai/        # 项目配置（settings / urls）
         ├── user_app/         # 用户注册 / 登录（JWT 认证）
         ├── ai_app/           # AI 心理咨询（DeepSeek 接入，四模式提示词）
         ├── map_app/          # 地图轨迹（规划中）
@@ -75,7 +75,7 @@
 
 ```bash
 # 1. 后端
-cd 个人项目-后端/xinyu_ai
+cd 个人项目-后端/zongyu_ai
 pip install -r requirements.txt
 cp .env.example .env      # 填入 SECRET_KEY / DB_PASSWORD / DEEPSEEK_API_KEY
 python manage.py migrate

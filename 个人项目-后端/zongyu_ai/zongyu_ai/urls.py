@@ -1,5 +1,5 @@
 """
-URL configuration for xinyu_ai project.
+URL configuration for zongyu_ai project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
