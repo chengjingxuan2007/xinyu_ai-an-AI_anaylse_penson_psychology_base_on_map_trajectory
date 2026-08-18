@@ -13,13 +13,20 @@
 │   ├── index.html            # 登录页
 │   ├── register.html         # 注册页
 │   ├── main.html             # 主页面（AI 咨询 + 地图 + 日记入口）
-│   ├── map.js                # OpenLayers 地图（高德底图）
+│   ├── map.js                # OpenLayers 地图 + 轨迹绘制（高德底图）
+│   ├── ai_chat/              # AI 聊天页（四模式切换，独立对话界面）
+│   │   ├── chat.html
+│   │   └── chat.js
+│   ├── track_analysis/       # 轨迹分析页（地图 + 距离/速度统计 + AI 分析）
+│   │   ├── track.html
+│   │   ├── track.css
+│   │   └── track.js
 │   └── mood_diary/           # 心情日记页
 └── 个人项目-后端/            # Django REST Framework 后端
     └── xinyu_ai/
         ├── xinyu_ai/         # 项目配置（settings / urls）
         ├── user_app/         # 用户注册 / 登录（JWT 认证）
-        ├── ai_app/           # AI 心理咨询（DeepSeek 接入）
+        ├── ai_app/           # AI 心理咨询（DeepSeek 接入，四模式提示词）
         ├── map_app/          # 地图轨迹（规划中）
         └── mood_diary/       # 心情日记（规划中）
 ```
@@ -43,6 +50,7 @@
 
 - ✅ 用户注册 / 登录（JWT 无状态认证，Token 存前端 localStorage）
 - ✅ AI 心理咨询对话
+  - 四模式切换（普通 / 伴侣 / 同学 / 老师，独立聊天页，共享医学红线）
   - 多轮记忆（session_id 关联会话，历史消息回传大模型）
   - 医学红线拦截（关键词过滤 + 系统提示词双重防护，不提供诊断/用药建议）
   - 请求长度限制与上下文截断（防刷与成本控制）
@@ -51,7 +59,8 @@
   - DRF 全局节流（防暴力破解 / 防 API 刷费）
   - 密码强度校验（Django validate_password）
   - 密钥外置（.env 环境变量，不进 git）
-- ✅ 地图底图展示（OpenLayers + 高德瓦片，汉中市默认视图）
+- ✅ 地图轨迹展示（OpenLayers + 高德底图，汉中市轨迹 demo）
+- ✅ 轨迹分析页（轨迹地图 + 距离/速度统计 + AI 情绪分析）
 
 ## 规划中功能
 
