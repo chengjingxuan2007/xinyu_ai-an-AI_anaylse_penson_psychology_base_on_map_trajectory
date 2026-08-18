@@ -1,6 +1,6 @@
 const API_BASE = 'http://127.0.0.1:8000/api';
-// 模拟出行时长：1.5 小时（demo 数据，后续可接真实记录）
-const TRACK_MINUTES = 90;
+// 模拟出行时长：1小时（demo 数据，后续可接真实记录）
+const TRACK_MINUTES = 60;
 
 // 两点间距离（米），Haversine 公式
 function segDist(a, b) {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const km = meters / 1000;
     const hours = TRACK_MINUTES / 60;
-    document.getElementById('stat-time').innerText = '1 小时 30 分';
+    document.getElementById('stat-time').innerText = '1小时' 
     document.getElementById('stat-dist').innerText = km.toFixed(2) + ' km';
     document.getElementById('stat-speed').innerText = (km / hours).toFixed(1) + ' km/h';
 });
@@ -31,7 +31,7 @@ async function analyzeTrack() {
 
     const dist = document.getElementById('stat-dist').innerText;
     const speed = document.getElementById('stat-speed').innerText;
-    const message = `我今天的轨迹：总距离${dist}，出行时间1小时30分，平均速度${speed}，共经过${(window.trackCoords || []).length}个位置点。请结合这些数据，分析我今天可能的情绪状态，并给我一些温暖的建议。`;
+    const message = `我今天的轨迹：总距离${dist}，出行时间${TRACK_MINUTES}分，平均速度${speed}，共经过${(window.trackCoords || []).length}个位置点。请结合这些数据，分析我今天可能的情绪状态，并给我一些温暖的建议。`;
 
     output.innerText = 'AI 正在分析你的轨迹，请稍候...';
     try {
